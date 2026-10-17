@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4c1d95" />
+      <stop offset="50%" stop-color="#581c87" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+    <linearGradient id="matchaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a3e635" />
+      <stop offset="50%" stop-color="#84cc16" />
+      <stop offset="100%" stop-color="#4d7c0f" />
+    </linearGradient>
+    <linearGradient id="bookGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4ff" />
+      <stop offset="100%" stop-color="#ede9fe" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Background rounded squircle with safe padding for maskable -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+
+  <!-- Outer subtle matcha ring -->
+  <circle cx="256" cy="256" r="210" fill="none" stroke="#84cc16" stroke-width="4" stroke-opacity="0.25" stroke-dasharray="12 8" />
+
+  <!-- Book Base in Center (Safe Zone within 80% circle) -->
+  <g filter="url(#shadow)" transform="translate(0, 10)">
+    <!-- Left Page -->
+    <path d="M256 360 C210 330 140 330 96 345 L96 165 C140 150 210 150 256 180 Z" fill="url(#bookGrad)" />
+    <!-- Right Page -->
+    <path d="M256 360 C302 330 372 330 416 345 L416 165 C372 150 302 150 256 180 Z" fill="#ffffff" />
+    <!-- Spine shading -->
+    <path d="M252 180 L260 180 L260 360 L252 360 Z" fill="#c4b5fd" opacity="0.6"/>
+
+    <!-- Subtle Page Lines on Left -->
+    <path d="M125 195 C160 185 205 185 235 205" stroke="#a78bfa" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <path d="M125 225 C160 215 205 215 235 235" stroke="#a78bfa" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <path d="M125 255 C160 245 205 245 235 265" stroke="#a78bfa" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <path d="M125 285 C160 275 205 275 235 295" stroke="#a78bfa" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+
+    <!-- Matcha Tea Leaf blooming from the book spine -->
+    <path d="M256 170 C240 110 275 75 320 80 C325 125 290 160 256 170 Z" fill="url(#matchaGrad)" />
+    <path d="M256 170 Q285 125 320 80" stroke="#f7fee7" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.8"/>
+    <!-- Secondary small leaf -->
+    <path d="M256 170 C235 140 210 130 195 145 C195 168 225 180 256 170 Z" fill="#65a30d" opacity="0.9" />
+
+    <!-- Subtle Golden Star / Sparkle of critical review -->
+    <circle cx="360" cy="200" r="14" fill="#facc15" />
+    <path d="M360 180 L362 195 L377 197 L363 203 L366 218 L355 207 L344 218 L347 203 L333 197 L348 195 Z" fill="#fef08a" />
+    
+    <!-- Rating Badge ribbon / Bookmark hanging from right page -->
+    <path d="M350 338 L350 395 L365 382 L380 395 L380 341 Z" fill="#65a30d" />
+  </g>
+</svg>

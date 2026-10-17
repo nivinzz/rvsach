@@ -1,0 +1,358 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --matcha-50: #f7fee7;
+    --matcha-100: #ecfccb;
+    --matcha-200: #d9f99d;
+    --matcha-300: #bef264;
+    --matcha-400: #a3e635;
+    --matcha-500: #84cc16;
+    --matcha-600: #65a30d;
+    --matcha-700: #4d7c0f;
+    --matcha-800: #3f6212;
+    --matcha-900: #365314;
+    --matcha-dark: #273e0e;
+
+    --violet-50: #faf5ff;
+    --violet-100: #f3e8ff;
+    --violet-200: #e9d5ff;
+    --violet-300: #d8b4fe;
+    --violet-400: #c084fc;
+    --violet-500: #a855f7;
+    --violet-600: #9333ea;
+    --violet-700: #7e22ce;
+    --violet-800: #6b21a8;
+    --violet-900: #581c87;
+    --violet-950: #3b0764;
+  }
+
+  html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    background-color: #faf7fc;
+    color: #1e1b4b;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Căn lề đều cả 2 bên (Justify) - Triệt tiêu thụt thò lồi lõm bên lề phải */
+  .text-justify,
+  [data-align="justify"],
+  .prose p,
+  .editorial-body p,
+  p.text-justify {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    text-align-last: left;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  /* Chỉ phóng to / thu nhỏ phần chữ nội dung đọc, giữ nguyên kích thước khung, lề và bìa tím */
+  :root {
+    --reading-font-scale: 1;
+  }
+
+  :root {
+    --reading-base: 1.02rem;
+    --reading-lh: 1.75;
+  }
+
+  .reading-content p,
+  .reading-content li span.leading-relaxed,
+  .reading-content li span.leading-snug,
+  .editorial-article p {
+    font-size: calc(var(--reading-base) * var(--reading-font-scale, 1)) !important;
+    line-height: var(--reading-lh) !important;
+  }
+
+  /* Thẻ nhân vật: chữ nhỏ hơn chữ đọc chính để vừa khung, không phình to */
+  .reading-content .char-card p {
+    font-size: calc(var(--reading-base) * 0.86 * var(--reading-font-scale, 1)) !important;
+    line-height: 1.62 !important;
+    hyphens: auto;
+    overflow-wrap: anywhere;
+  }
+
+  .reading-content .scalable-subtext {
+    font-size: calc(0.9rem * var(--reading-font-scale, 1)) !important;
+  }
+}
+
+/* Custom smooth scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3e8ff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a855f7;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7e22ce;
+}
+
+/* Headings Vietnamese Font Kerning Fix (Khắc phục lỗi tách dấu như Vùng Đấ t Cấ m) */
+h1, h2, h3, h4, .font-serif {
+  font-family: 'Be Vietnam Pro', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* Print Styles - PDF nền matcha nhẹ, khít trang, không khoảng trống thừa */
+@media print {
+  /* Giữ nguyên màu sắc / gradient khi xuất PDF */
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  @page {
+    margin: 9mm 9mm 10mm 9mm;
+    size: A4 portrait;
+  }
+
+  /* Cỡ chữ nội dung gọn hơn trong PDF (biến thường > biến trong @layer) */
+  :root {
+    --reading-base: 1rem;
+    --reading-lh: 1.62;
+  }
+
+  header, nav, button, .no-print, [role="button"], .print-hidden {
+    display: none !important;
+  }
+
+  /* NỀN MATCHA NHẸ phủ toàn bộ trang */
+  html, body {
+    background: #e9f2d6 !important;
+    color: #1e1b4b !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    overflow: visible !important;
+    height: auto !important;
+    font-size: 13px !important;
+  }
+
+  /* Bỏ min-h-screen / nền tím nhạt của khung app để không sinh trang trống */
+  #root, #root > div {
+    background: transparent !important;
+    min-height: 0 !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  main {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  main > div {
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* HERO – thẻ bìa tím */
+  .hero-poster {
+    background: linear-gradient(135deg, #2e0854 0%, #3b0764 45%, #1a3a09 100%) !important;
+    color: #ffffff !important;
+    border: 2px solid #7e22ce !important;
+    border-radius: 18px !important;
+    padding: 20px 22px !important;
+    margin: 0 0 12px 0 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    box-shadow: none !important;
+    display: block !important;
+  }
+
+  .book-cover-container {
+    display: block !important;
+    visibility: visible !important;
+    border: 3px solid #ffffff !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    background-color: #1e0538 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    width: 175px !important;
+    min-width: 175px !important;
+    max-width: 175px !important;
+    break-inside: avoid !important;
+  }
+
+  .book-cover-img {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 260px !important;
+    object-fit: cover !important;
+  }
+
+  .score-chip {
+    z-index: 30 !important;
+  }
+
+  /* ===== NỘI DUNG: các thẻ lớn ĐƯỢC PHÉP ngắt trang -> không còn khoảng trống ===== */
+  .reading-content {
+    display: block !important;
+    animation: none !important;
+  }
+
+  .reading-content > div {
+    margin: 0 0 12px 0 !important;
+  }
+
+  .reading-content > div:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* Dàn 1 cột trong PDF để thẻ chảy liên tục, lấp đầy trang */
+  .reading-content .grid {
+    display: block !important;
+  }
+
+  .reading-content .grid > div {
+    margin: 0 0 12px 0 !important;
+  }
+
+  /* Thẻ nội dung: nền trắng, viền matcha, bo nhẹ, bỏ bóng */
+  .reading-content .bg-white,
+  .reading-content > div.bg-gradient-to-br,
+  .reading-content .grid > div {
+    box-shadow: none !important;
+    border-radius: 16px !important;
+  }
+
+  .reading-content .bg-white {
+    background-color: #ffffff !important;
+    border: 1px solid #cfe3a8 !important;
+  }
+
+  /* Thu gọn padding thẻ lớn */
+  .reading-content > div,
+  .reading-content > .grid > div {
+    padding: 16px 18px !important;
+  }
+
+  /* Lưới nhân vật / trích dẫn: 2 cột gọn trong PDF */
+  .reading-content .grid.sm\:grid-cols-2,
+  .reading-content .grid.md\:grid-cols-2 {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .reading-content .grid.sm\:grid-cols-2 > div,
+  .reading-content .grid.md\:grid-cols-2 > div {
+    margin: 0 !important;
+    padding: 12px 14px !important;
+  }
+
+  /* Nhân vật: 1 cột full-width, thẻ gọn -> khoảng trống cuối trang rất nhỏ */
+  .reading-content .grid.char-grid {
+    display: block !important;
+  }
+
+  .reading-content .grid.char-grid > div {
+    display: block !important;
+    margin: 0 0 8px 0 !important;
+    padding: 10px 14px !important;
+    height: auto !important;
+  }
+
+  .reading-content .grid.char-grid > div > div:first-child {
+    margin-bottom: 5px;
+  }
+
+  .reading-content .grid.char-grid > div > p + p {
+    margin-top: 5px;
+  }
+
+  /* Chủ đề then chốt: lưới 2 cột đều nhau */
+  .reading-content .theme-grid {
+    gap: 7px !important;
+  }
+
+  .reading-content .theme-grid > span {
+    padding: 6px 12px !important;
+  }
+
+  /* Hai phần PDF: tiêu đề phần + khoảng cách */
+  .part-section {
+    display: block !important;
+  }
+
+  .print-part-title {
+    display: flex !important;
+    margin: 4px 0 10px 0 !important;
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  .part-editorial {
+    margin-top: 14px !important;
+  }
+
+  /* Bài phê bình: bỏ padding kép của rule thẻ lớn */
+  .reading-content.bg-white > div {
+    padding: 0 !important;
+    margin: 0 0 12px 0 !important;
+  }
+
+  .reading-content.bg-white > div:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* Chỉ các khối NHỎ mới giữ nguyên không bị cắt đôi */
+  .print-avoid-break,
+  .reading-content li {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Tiêu đề không bị mồ côi cuối trang */
+  h1, h2, h3, h4 {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  /* Banner phán quyết giữ nguyên 1 khối cho đẹp */
+  .reading-content > div.bg-gradient-to-r {
+    break-inside: avoid !important;
+    padding: 18px 22px !important;
+    border-radius: 16px !important;
+    box-shadow: none !important;
+  }
+
+  /* Bài phê bình toàn văn: dàn chữ chảy liền mạch */
+  .reading-content.bg-white {
+    padding: 20px 24px !important;
+    border-radius: 16px !important;
+  }
+
+  .editorial-article {
+    margin: 0 !important;
+  }
+
+  .editorial-article p {
+    margin: 0 0 9px 0 !important;
+  }
+
+  p, li {
+    orphans: 3;
+    widows: 3;
+  }
+}

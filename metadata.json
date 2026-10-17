@@ -1,0 +1,6 @@
+{
+  "name": "MatchaBook Reviewer - EPUB Review & Summary",
+  "description": "Ứng dụng thẩm định và review sâu sắc sách EPUB, phân tích tính cách nhân vật, PWA mượt mà trên điện thoại.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
